@@ -101,6 +101,7 @@ public class IndexStatisticsController extends SuperController{
 			sb.append("\""+s.getName()+"\",");
 			double money = 0;
 			for(FinOutRecorded r : record){
+				
 				if(s.getId().equals(r.getSourceId())){
 					money += r.getMoney();
 				}
