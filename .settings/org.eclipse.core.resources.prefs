@@ -1,0 +1,16 @@
+eclipse.preferences.version=1
+encoding//src/main/resources/sql/AdminLTE-admin.sql=UTF-8
+encoding//src/main/webapp/WEB-INF/views/finance/outRecord/add.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/finance/outRecord/edit.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/finance/outRecord/list.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/finance/recorded/add.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/finance/recorded/edit.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/finance/recorded/list.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/index.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/system/log/list.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/system/menu/add.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/system/menu/list.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/system/role/edit.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/system/role/list.html=UTF-8
+encoding//src/test/java=UTF-8
+encoding/<project>=UTF-8

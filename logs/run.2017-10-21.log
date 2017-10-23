@@ -1,0 +1,21 @@
+2017-10-21 01:00:01.949 [qtp1515116175-55] [DEBUG] c.v.m.SysSettingMapper.selectList.debug 159 -- ==>  Preparing: SELECT Id,sysKey,sysName,sysValue,sort,sysDesc FROM sys_setting ORDER BY sort ASC 
+2017-10-21 01:00:01.955 [qtp1515116175-55] [DEBUG] c.v.m.SysSettingMapper.selectList.debug 159 -- ==> Parameters: 
+2017-10-21 01:00:01.956 [qtp1515116175-55] [DEBUG] c.v.m.SysSettingMapper.selectList.debug 159 -- <==      Total: 3
+2017-10-21 04:00:01.950 [qtp1515116175-55] [DEBUG] c.v.m.SysSettingMapper.selectList.debug 159 -- ==>  Preparing: SELECT Id,sysKey,sysName,sysValue,sort,sysDesc FROM sys_setting ORDER BY sort ASC 
+2017-10-21 04:00:01.951 [qtp1515116175-55] [DEBUG] c.v.m.SysSettingMapper.selectList.debug 159 -- ==> Parameters: 
+2017-10-21 04:00:01.953 [qtp1515116175-55] [DEBUG] c.v.m.SysSettingMapper.selectList.debug 159 -- <==      Total: 3
+2017-10-21 05:00:02.270 [qtp1515116175-55] [DEBUG] c.v.m.SysSettingMapper.selectList.debug 159 -- ==>  Preparing: SELECT Id,sysKey,sysName,sysValue,sort,sysDesc FROM sys_setting ORDER BY sort ASC 
+2017-10-21 05:00:02.272 [qtp1515116175-55] [DEBUG] c.v.m.SysSettingMapper.selectList.debug 159 -- ==> Parameters: 
+2017-10-21 05:00:02.275 [qtp1515116175-55] [DEBUG] c.v.m.SysSettingMapper.selectList.debug 159 -- <==      Total: 3
+2017-10-21 09:00:02.221 [qtp1515116175-55] [DEBUG] c.v.m.SysSettingMapper.selectList.debug 159 -- ==>  Preparing: SELECT Id,sysKey,sysName,sysValue,sort,sysDesc FROM sys_setting ORDER BY sort ASC 
+2017-10-21 09:00:02.221 [qtp1515116175-55] [DEBUG] c.v.m.SysSettingMapper.selectList.debug 159 -- ==> Parameters: 
+2017-10-21 09:00:02.222 [qtp1515116175-55] [DEBUG] c.v.m.SysSettingMapper.selectList.debug 159 -- <==      Total: 3
+2017-10-21 13:00:02.638 [qtp1515116175-55] [DEBUG] c.v.m.SysSettingMapper.selectList.debug 159 -- ==>  Preparing: SELECT Id,sysKey,sysName,sysValue,sort,sysDesc FROM sys_setting ORDER BY sort ASC 
+2017-10-21 13:00:02.638 [qtp1515116175-55] [DEBUG] c.v.m.SysSettingMapper.selectList.debug 159 -- ==> Parameters: 
+2017-10-21 13:00:02.639 [qtp1515116175-55] [DEBUG] c.v.m.SysSettingMapper.selectList.debug 159 -- <==      Total: 3
+2017-10-21 17:00:02.700 [qtp1515116175-55] [DEBUG] c.v.m.SysSettingMapper.selectList.debug 159 -- ==>  Preparing: SELECT Id,sysKey,sysName,sysValue,sort,sysDesc FROM sys_setting ORDER BY sort ASC 
+2017-10-21 17:00:02.700 [qtp1515116175-55] [DEBUG] c.v.m.SysSettingMapper.selectList.debug 159 -- ==> Parameters: 
+2017-10-21 17:00:02.701 [qtp1515116175-55] [DEBUG] c.v.m.SysSettingMapper.selectList.debug 159 -- <==      Total: 3
+2017-10-21 21:00:03.317 [qtp1515116175-55] [DEBUG] c.v.m.SysSettingMapper.selectList.debug 159 -- ==>  Preparing: SELECT Id,sysKey,sysName,sysValue,sort,sysDesc FROM sys_setting ORDER BY sort ASC 
+2017-10-21 21:00:03.318 [qtp1515116175-55] [DEBUG] c.v.m.SysSettingMapper.selectList.debug 159 -- ==> Parameters: 
+2017-10-21 21:00:03.318 [qtp1515116175-55] [DEBUG] c.v.m.SysSettingMapper.selectList.debug 159 -- <==      Total: 3

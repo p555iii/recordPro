@@ -1,0 +1,151 @@
+<#include "/common/layout_dl.html">
+<@header>
+</@header>
+<@body>
+<form class="form-horizontal layui-form layui-form-pane" method="post" action="/finance/outRecorded/doAdd">
+  <div class="box-body">
+    <div class="form-group">
+      <label for="uname"  class="col-sm-2 control-label">出账日期</label>
+         <div class="form-group">
+			 <input type="text" name="createTime" value="${daterange!}" class="form-control date" id="daterange" placeholder="出账日期" style="width: 228px;">
+		 </div>
+    </div>
+    <div class="form-group">
+      <label for="uname"  class="col-sm-2 control-label">金额</label>
+         <div class="form-group">
+			 <input type="text" name="money"  class="form-control" id="daterange" placeholder="金额" style="width: 228px;">
+		 </div>
+    </div>
+    <div class="form-group">
+      <label for="uname"  class="col-sm-2 control-label">出账类型</label>
+         <div class="form-group">
+         	 <select name="sourceId" class="form-control" style="width: 228px;" lay-verify="required" lay-ignore>
+			      <#list sourceList as m>
+			      	<option value="${(m.id)!}">${(m.name)!}</option>
+			      </#list>
+			    </select>
+		 </div>
+    </div>
+    <div class="form-group">
+          <label  class="col-sm-2 control-label">描述</label>
+         <div class="col-sm-10">
+          <textarea class="form-control" name="description" rows="3" placeholder="请输入描述，最多300个字符 ..." ></textarea>
+         </div>
+     </div>
+       <div class="form-group">
+       	 <label   class="col-sm-2 control-label"></label>
+        <div class="col-sm-10">
+      	<button type="submit" class="btn btn-success" lay-submit lay-filter="submit"><i class="fa fa-save"></i>  提 交</button>
+      	<a  class="btn btn-default" href="javascript:parent.layer.closeAll('iframe');"><i class="fa fa-close"></i>  取消</a>
+   	  </div>
+ </div>
+  </div>
+</form>
+<script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<script>
+function getBoforeDate(before){
+		var now = new Date();
+		now.setDate(now.getDate()-before);
+		return now;
+	}
+	
+	function getBoforeMonth(beforeMonth,day){
+		var now = new Date();
+		now.setDate(day);
+		now.setMonth(now.getMonth()-beforeMonth);
+		return now;
+	}
+	
+	$(function(){
+		
+		var now = new Date();
+		
+		$('.date').daterangepicker({
+		    "showWeekNumbers": true,
+		    "showISOWeekNumbers": true,
+		    "singleDatePicker": true, //单日历
+		    "ranges": {
+		        "今天": [
+		            now,
+		            now
+		        ],
+		        "昨天": [
+					getBoforeDate(1),
+					getBoforeDate(1)
+		        ],
+		        "最近7天": [
+					getBoforeDate(7),
+					now
+		        ],
+		        "最近30天": [
+		            getBoforeDate(30),
+		            now
+		        ],
+		        "本月": [
+		            getBoforeMonth(0,1),
+		            getBoforeMonth(0,31)
+		        ],
+		        "上个月": [
+					getBoforeMonth(1,1),
+					getBoforeMonth(1,31)
+		        ],
+		        "最近三个月": [
+						getBoforeMonth(2,1),
+						getBoforeMonth(0,31)
+			        ]
+		    },
+		    "locale": {
+		        "format": "YYYY/MM/DD",
+		        "separator": "-",
+		        "applyLabel": "应用",
+		        "cancelLabel": "取消",
+		        "fromLabel": "From",
+		        "toLabel": "To",
+		        "customRangeLabel": "自定义",
+		        "weekLabel": "W",
+		        "daysOfWeek": [
+		            "日",
+		            "一",
+		            "二",
+		            "三",
+		            "四",
+		            "五",
+		            "六"
+		        ],
+		        "monthNames": [
+		            "一月",
+		            "二月",
+		            "三月",
+		            "四月",
+		            "五月",
+		            "六月",
+		            "七月",
+		            "八月",
+		            "九月",
+		            "十月",
+		            "十一月",
+		            "十二月"
+		        ],
+		        "firstDay": 1
+		    },
+		    "alwaysShowCalendars": true,
+		    "autoUpdateInput":false,
+		    "opens": "right",
+		    "buttonClasses": "btn btn-sm"
+		}, function(start, end, label) {
+		  console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+		});
+		
+		$('.date').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('YYYY/MM/DD'));
+        });
+
+        $('.date').on('cancel.daterangepicker', function(ev, picker) {
+            $(this).val('');
+        });
+		
+	});
+</script>
+</@body>
+<@footer>
+</@footer>
