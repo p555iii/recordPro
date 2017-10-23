@@ -1,10 +1,10 @@
 
-### AdminLTE-admin 轻量级权限管理框架
+### AdminLTE-admin 轻量级财务管理框架
 
 ### 项目说明
 -------------
-1. AdminLTE-admin是以SpringMVC+Shiro+Mybatis为核心开发的精简后台基础系统。
-2. 包含用户管理,角色管理,部门管理,权限管理,菜单管理,日志管理等常用业务模块。
+1. AdminLTE-admin是以SpringMVC+Shiro+Mybatis为核心开发的精简后台财务系统。
+2. 包含用户管理,角色管理,部门管理,权限管理,菜单管理,日志管理,财务管理等常用业务模块。
 3. 使用AdminLTE作为前端UI框架。
 4. 第三方Mybatis-plus作为ORM框架。
 5. Encache权限缓存。
