@@ -26,6 +26,7 @@ AdminLTE、Spring MVC、Shiro、Mybatis、Mybatis-Plus、Mysql、Maven
 
 ### 参考项目
 -------------
+1. 框架参考于https://gitee.com/zhougaojun/KangarooAdmin
 1. https://github.com/almasaeed2010/AdminLTE
 2. http://mp.baomidou.com/#/
 
