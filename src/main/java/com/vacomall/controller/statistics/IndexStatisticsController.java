@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.vacomall.common.controller.SuperController;
 import com.vacomall.entity.FinOutRecorded;
 import com.vacomall.entity.FinRecorded;

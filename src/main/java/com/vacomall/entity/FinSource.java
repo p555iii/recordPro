@@ -1,6 +1,7 @@
 package com.vacomall.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableId;
@@ -18,16 +19,16 @@ public class FinSource extends Model<FinSource>{
 	private String name;
 	private String pid;
 	private int isRecord;
-	private String userId;
+	private Date createTime;
 	
 	
 	
 	
-	public String getUserId() {
-		return userId;
+	public Date getCreateTime() {
+		return createTime;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 	public int getIsRecord() {
 		return isRecord;

@@ -38,6 +38,7 @@ D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\controller\system\Monito
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\controller\system\DeptController.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\controller\system\RoleController.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\entity\FinOutRecorded.java
+D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\controller\finance\SourceController.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\entity\FinSource.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\service\impl\SysLogServiceImpl.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\common\util\HttpUtil.java
