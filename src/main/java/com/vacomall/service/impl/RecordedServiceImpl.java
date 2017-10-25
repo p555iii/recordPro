@@ -2,7 +2,9 @@ package com.vacomall.service.impl;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,14 @@ public class RecordedServiceImpl extends ServiceImpl<RecordedMapper, FinRecorded
 	public List<FinRecorded> getThisMonthRecordList() {
 		Date date = new Date();
 		return recordedMapper.getThisMonthRecordList(date.getMonth() + 1);
+	}
+
+	@Override
+	public double selectHistroyRecord(String year, String month) {
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("year", year);
+		map.put("month", month);
+		return recordedMapper.selectHistroyRecord(map);
 	}
 
 }

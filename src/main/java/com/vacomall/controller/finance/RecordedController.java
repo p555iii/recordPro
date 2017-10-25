@@ -61,6 +61,7 @@ public class RecordedController extends SuperController{
 		model.addAttribute("userList", userList);
 		return "finance/recorded/list";
 	}
+    
     @RequestMapping("/add")  
     public String add(Model model){
     	List<FinSource> sourceList = sourceService.getSourceByRecord();
@@ -84,12 +85,14 @@ public class RecordedController extends SuperController{
     	recordedService.insert(finRecorded);
     	return Rest.ok();
     }
+	
 	@RequestMapping("/delete")
 	@ResponseBody
 	public Rest delete(String id){
 		recordedService.deleteById(id);
 		return Rest.ok();
 	}
+	
 	@RequestMapping("/edit")
 	public String edit(String id,Model model){
 		FinRecorded selectById = recordedService.selectById(id);
@@ -98,6 +101,7 @@ public class RecordedController extends SuperController{
 		model.addAttribute("sourceList", sourceList);
 		return "finance/recorded/edit";
 	}
+	
 	@RequestMapping("/doEdit")
 	@ResponseBody
 	public Rest doEdit(FinRecorded finRecorded){

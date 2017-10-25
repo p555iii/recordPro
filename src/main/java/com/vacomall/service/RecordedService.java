@@ -11,5 +11,7 @@ public interface RecordedService extends IService<FinRecorded> {
 	BigDecimal getThisMonthRecord();
 
 	List<FinRecorded> getThisMonthRecordList();
+
+	double selectHistroyRecord(String year, String month);
 	
 }

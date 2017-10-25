@@ -10,4 +10,18 @@
 	<select id="getSourceByNotRecord" resultType="com.vacomall.entity.FinSource">
 		select * from fin_source where isRecord = 0
 	</select>
+	
+	<select id="findAllYear" resultType="String">
+		SELECT DISTINCT a.year FROM(
+			SELECT  YEAR FROM fin_recorded
+			UNION ALL
+		SELECT  YEAR FROM fin_outrecord) a
+	</select>
+	
+	<select id="findAllMonth" resultType="String">
+		SELECT DISTINCT a.MONTH FROM(
+			SELECT  MONTH FROM fin_recorded
+			UNION ALL
+			SELECT  MONTH FROM fin_outrecord) a
+	</select>
 </mapper>

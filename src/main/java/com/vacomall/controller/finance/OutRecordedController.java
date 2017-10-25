@@ -73,7 +73,6 @@ public class OutRecordedController extends SuperController{
     public Rest doAdd(FinOutRecorded finRecorded){
     	Date createTime = finRecorded.getCreateTime();
     	Calendar c = Calendar.getInstance();
-    	System.out.println(finRecorded.getMoney()+"-----------");
     	c.setTime(createTime);
     	finRecorded.setYear(createTime.getYear()+1900);
     	finRecorded.setMonth(createTime.getMonth()+1);
@@ -84,12 +83,14 @@ public class OutRecordedController extends SuperController{
     	outRecordedService.insert(finRecorded);
     	return Rest.ok();
     }
+	
 	@RequestMapping("/delete")
 	@ResponseBody
 	public Rest delete(String id){
 		outRecordedService.deleteById(id);
 		return Rest.ok();
 	}
+	
 	@RequestMapping("/edit")
 	public String edit(String id,Model model){
 		FinOutRecorded selectById = outRecordedService.selectById(id);
@@ -98,6 +99,7 @@ public class OutRecordedController extends SuperController{
 		model.addAttribute("sourceList", sourceList);
 		return "finance/outRecord/edit";
 	}
+	
 	@RequestMapping("/doEdit")
 	@ResponseBody
 	public Rest doEdit(FinOutRecorded finRecorded){

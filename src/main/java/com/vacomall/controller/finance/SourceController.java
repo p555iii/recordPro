@@ -28,6 +28,7 @@ import com.vacomall.service.SourceService;
 public class SourceController extends SuperController{
 	@Autowired
 	private SourceService sourceService;
+	
 	@RequestMapping("/list/{pageNumber}")  
 	public  String list(@PathVariable Integer pageNumber,@RequestParam(defaultValue="15") Integer pageSize, String search,Model model){
 		Page<FinSource> page = getPage(pageNumber,pageSize);
@@ -51,6 +52,7 @@ public class SourceController extends SuperController{
 		model.addAttribute("sourceList", sourceList);
 	   	return "finance/source/add";
 	 }
+	 
 	 @RequestMapping("/doAdd")
 	 @ResponseBody
 	 public Rest doAdd(FinSource source){
@@ -59,18 +61,21 @@ public class SourceController extends SuperController{
 		 sourceService.insert(source);
 	     return Rest.ok();
 	 }
+	 
 	 @RequestMapping("/delete")
 	 @ResponseBody
 	 public Rest delete(String id){
 		sourceService.deleteById(id);
 		return Rest.ok();
 	 }
+	 
 	 @RequestMapping("/edit")
 	 public String edit(String id,Model model){
 		FinSource selectById = sourceService.selectById(id);
 		model.addAttribute("source", selectById);
 		return "finance/source/edit";
 	}
+	 
 	@RequestMapping("/doEdit")
 	@ResponseBody
 	public Rest doEdit(FinSource source){

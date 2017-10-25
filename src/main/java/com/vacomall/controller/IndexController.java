@@ -47,7 +47,12 @@ public class IndexController {
     	for(int i = 1;i <= day; i++){
     		sb.append("\""+i+"\",");
     		BigDecimal money =outRecordedService.getThisMonthDayOutRecord(i);
-    		sb2.append(""+money+",");
+    		if(money.doubleValue() > 0){
+    			sb2.append(""+money+",");
+    		}else{
+    			sb2.append("null,");
+    		}
+    		
     	}
     	sb.deleteCharAt(sb.length() - 1);
     	sb2.deleteCharAt(sb2.length() - 1);

@@ -21,4 +21,12 @@ public interface OutRecordedMapper extends BaseMapper<FinOutRecorded>{
 
 	List<FinOutRecorded> getThisMonthOutRecordList(int month);
 
+	double selectHistroyOutRecord(Map<String, String> map);
+
+	BigDecimal getMonthOutRecord(Map<String, String> map);
+
+	double getBalance(Map<String, String> map);
+
+	List<FinOutRecorded> selectHistroyOutRecordList(Map<String, String> map);
+
 }

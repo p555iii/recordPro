@@ -9,4 +9,8 @@ public interface SourceService extends IService<FinSource>{
 	List<FinSource> getSourceByRecord();
 	
 	List<FinSource> getSourceByNotRecord();
+
+	List<String> findAllYear();
+
+	List<String> findAllMonth();
 }

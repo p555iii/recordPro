@@ -4,10 +4,22 @@
 
 	<!-- 通用查询映射结果 -->
 	<select id="getThisMonthRecord" parameterType="int" resultType="java.math.BigDecimal">
-		SELECT SUM(money) FROM fin_recorded WHERE MONTH = ${value} and year = ( SELECT DATE_FORMAT( CURRENT_TIMESTAMP(),'%Y' ) )
+		SELECT IFNULL(sum(money),0) FROM fin_recorded WHERE MONTH = ${value} and year = ( SELECT DATE_FORMAT( CURRENT_TIMESTAMP(),'%Y' ) )
 	</select>
 	
 	<select id="getThisMonthRecordList" parameterType="int" resultType="com.vacomall.entity.FinRecorded">
 		SELECT * FROM fin_recorded WHERE MONTH = ${value} and year = ( SELECT DATE_FORMAT( CURRENT_TIMESTAMP(),'%Y' ) )
+	</select>
+	
+	<select id="selectHistroyRecord" parameterType="Map" resultType="java.lang.Double">
+		SELECT IFNULL(sum(money),0) FROM fin_recorded
+		 <where>
+             <if test="year !=null">
+                 and year = #{year}
+             </if>
+             <if test="month != null">
+                  and month = #{month}
+             </if>
+         </where>
 	</select>
 </mapper>

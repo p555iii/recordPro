@@ -19,5 +19,13 @@ public interface OutRecordedService extends IService<FinOutRecorded> {
 	List<FinOutRecorded> getThisDayOutRecordList();
 
 	List<FinOutRecorded> getThisMonthOutRecordList();
+
+	double selectHistroyOutRecord(String year, String month);
+
+	BigDecimal getMonthOutRecord(String month, String month2);
+
+	double getBalance(String year, String month);
+
+	List<FinOutRecorded> selectHistroyOutRecordList(String year, String month);
 	
 }
