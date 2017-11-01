@@ -15,6 +15,7 @@ D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\controller\statistics\Hi
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\controller\LoginController.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\common\shiro\tag\PermissionTag.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\controller\system\RoleController.java
+D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\entity\Page.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\entity\FinOutRecorded.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\entity\FinSource.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\service\impl\SysLogServiceImpl.java

@@ -6,10 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.vacomall.common.controller.SuperController;
+import com.vacomall.common.util.ShiroUtil;
 import com.vacomall.entity.FinOutRecorded;
 import com.vacomall.entity.FinRecorded;
 import com.vacomall.entity.FinSource;
+import com.vacomall.entity.SysUser;
+import com.vacomall.service.ISysUserService;
 import com.vacomall.service.OutRecordedService;
 import com.vacomall.service.RecordedService;
 import com.vacomall.service.SourceService;
@@ -27,6 +31,8 @@ public class IndexStatisticsController extends SuperController{
 	private OutRecordedService outRecordService;
 	@Autowired
 	private SourceService service;
+	@Autowired 
+	private ISysUserService sysUserService;
 	/**
 	 * 本月入账统计
 	 * @param model
@@ -34,10 +40,12 @@ public class IndexStatisticsController extends SuperController{
 	 */
 	@RequestMapping("/monthRecord")
 	public String recordStatistics(Model model){
+		//得到当前登录用户  然后通过用户信息得到所属famliy
+    	SysUser sysUser = sysUserService.selectById(ShiroUtil.getSessionUid());
 		//收入类型
 		List<FinSource> sourceByRecord = service.getSourceByRecord();
 		//当月的收入
-		List<FinRecorded> record = recordedService.getThisMonthRecordList();
+		List<FinRecorded> record = recordedService.getThisMonthRecordList(sysUser);
 		StringBuffer sb = new StringBuffer();
 		StringBuffer sb2 = new StringBuffer();
 		for(FinSource s : sourceByRecord){
@@ -63,9 +71,11 @@ public class IndexStatisticsController extends SuperController{
 	 */
 	@RequestMapping("/toDayOutrecord")
 	public String toDayOutrecordStatistics(Model model){
+		//得到当前登录用户  然后通过用户信息得到所属famliy
+    	SysUser sysUser = sysUserService.selectById(ShiroUtil.getSessionUid());
 		List<FinSource> sourceByNotRecord = service.getSourceByNotRecord();
 		//当天的支出
-		List<FinOutRecorded> record = outRecordService.getThisDayOutRecordList();
+		List<FinOutRecorded> record = outRecordService.getThisDayOutRecordList(sysUser);
 		StringBuffer sb = new StringBuffer();
 		StringBuffer sb2 = new StringBuffer();
 		for(FinSource s : sourceByNotRecord){
@@ -85,15 +95,17 @@ public class IndexStatisticsController extends SuperController{
 		return "/statistics/index/toDaymonthOutRecord";
 	}
 	/**
-	 * 今日出账统计
+	 * 本月出账统计
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping("/toMothOutrecord")
 	public String toMothOutrecordStatistics(Model model){
+		//得到当前登录用户  然后通过用户信息得到所属famliy
+    	SysUser sysUser = sysUserService.selectById(ShiroUtil.getSessionUid());
 		List<FinSource> sourceByNotRecord = service.getSourceByNotRecord();
 		//当天的支出
-		List<FinOutRecorded> record = outRecordService.getThisMonthOutRecordList();
+		List<FinOutRecorded> record = outRecordService.getThisMonthOutRecordList(sysUser);
 		StringBuffer sb = new StringBuffer();
 		StringBuffer sb2 = new StringBuffer();
 		for(FinSource s : sourceByNotRecord){

@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.Page;
 import com.vacomall.common.bean.Rest;
 import com.vacomall.common.controller.SuperController;
 import com.vacomall.common.util.ShiroUtil;
 import com.vacomall.entity.FinOutRecorded;
 import com.vacomall.entity.FinRecorded;
 import com.vacomall.entity.FinSource;
+import com.vacomall.entity.Page;
 import com.vacomall.entity.SysUser;
 import com.vacomall.service.ISysUserService;
 import com.vacomall.service.OutRecordedService;
@@ -39,12 +39,14 @@ public class OutRecordedController extends SuperController{
 	private SourceService sourceService;
 	@Autowired
 	private ISysUserService iSysUserService;
+	@Autowired 
+	private ISysUserService sysUserService;
 	
 	@RequestMapping("/list/{pageNumber}")  
 	public  String list(@PathVariable Integer pageNumber,@RequestParam(defaultValue="15") Integer pageSize, String search,Model model){
-		Page<FinOutRecorded> page = getPage(pageNumber,pageSize);
-		page.setOrderByField("createTime");
-		page.setAsc(false);
+		//得到当前登录用户  然后通过用户信息得到所属famliy
+    	SysUser sysUser = sysUserService.selectById(ShiroUtil.getSessionUid());
+    	System.out.println("---------"+pageNumber);
 		model.addAttribute("pageSize",pageSize);
 		// 查询分页
 		EntityWrapper<FinOutRecorded> ew = new EntityWrapper<FinOutRecorded>();
@@ -52,7 +54,10 @@ public class OutRecordedController extends SuperController{
 			ew.lt("money", search);
 			model.addAttribute("search",search);
 		}
-		Page<FinOutRecorded> pageData = outRecordedService.selectPage(page, ew);
+		Page<FinOutRecorded> page = outRecordedService.selectPage(pageNumber, pageSize, sysUser,search);
+		com.baomidou.mybatisplus.plugins.Page<FinOutRecorded> pageData = new com.baomidou.mybatisplus.plugins.Page<FinOutRecorded>(page.getPageNow(),page.getPageSize());
+		pageData.setRecords(page.getList());
+		pageData.setTotal(page.getCount());
 		model.addAttribute("pageData", pageData);
 		List<FinSource> sourceList = sourceService.getSourceByNotRecord();
 		model.addAttribute("sourceList", sourceList);

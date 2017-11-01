@@ -10,8 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.vacomall.common.controller.SuperController;
+import com.vacomall.common.util.ShiroUtil;
 import com.vacomall.entity.FinOutRecorded;
 import com.vacomall.entity.FinSource;
+import com.vacomall.entity.SysUser;
+import com.vacomall.service.ISysUserService;
 import com.vacomall.service.OutRecordedService;
 import com.vacomall.service.RecordedService;
 import com.vacomall.service.SourceService;
@@ -29,9 +32,13 @@ public class HistoryStatisticsController extends SuperController{
 	private OutRecordedService outRecordService;
 	@Autowired
 	private SourceService service;
+	@Autowired 
+	private ISysUserService sysUserService;
 	
 	@RequestMapping("/st")
 	public String st(String year,String month,Model model){
+		//得到当前登录用户  然后通过用户信息得到所属famliy
+    	SysUser sysUser = sysUserService.selectById(ShiroUtil.getSessionUid());
 		if(StringUtils.isEmpty(year)){
 			year = null;
 		}
@@ -39,23 +46,23 @@ public class HistoryStatisticsController extends SuperController{
 			month = null;
 		}
 		//总收入
-		double recordMoney = recordedService.selectHistroyRecord(year,month);
+		double recordMoney = recordedService.selectHistroyRecord(year,month,sysUser);
 		model.addAttribute("sumR", recordMoney);
 		//总支出
-		double ct = outRecordService.selectHistroyOutRecord(year,month);
+		double ct = outRecordService.selectHistroyOutRecord(year,month,sysUser);
 		model.addAttribute("ct", ct);
 		//本月累计出账
-    	BigDecimal t =  outRecordService.getMonthOutRecord(year,month);
+    	BigDecimal t =  outRecordService.getMonthOutRecord(year,month,sysUser);
     	model.addAttribute("t", t);
     	//总结余
-    	double s1 = outRecordService.getBalance(year, month);
+    	double s1 = outRecordService.getBalance(year, month,sysUser);
     	model.addAttribute("s", s1);
     	//支出类型
     	List<FinSource> sourceByNotRecord = service.getSourceByNotRecord();
     	StringBuffer sb = new StringBuffer();
 		StringBuffer sb2 = new StringBuffer();
 		//当前年月的支出
-		List<FinOutRecorded> list = outRecordService.selectHistroyOutRecordList(year,month);
+		List<FinOutRecorded> list = outRecordService.selectHistroyOutRecordList(year,month,sysUser);
 		for(FinSource s : sourceByNotRecord){
 			sb.append("\""+s.getName()+"\",");
 			double money = 0;

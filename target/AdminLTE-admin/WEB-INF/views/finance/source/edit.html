@@ -1,0 +1,35 @@
+<#include "/common/layout_dl.html">
+<@header>
+</@header>
+<@body>
+<form class="form-horizontal layui-form layui-form-pane" method="post" action="/finance/source/doEdit">
+  <div class="box-body">
+    <div class="form-group">
+      <label for="name"  class="col-sm-2 control-label">账目名称</label>
+      <input type="hidden" name="id" value="${(source.id)!}"/>
+         <div class="form-group">
+			 <element>
+			 	<input type="text" name="name" value="${(source.name)!}"class="form-control" placeholder="账目名称" style="width: 228px;"></element>
+         </div>
+    </div>
+    <div class="form-group">
+      <label for="isRecord"  class="col-sm-2 control-label">收入/支出</label>
+        <div class="form-group">
+		     <select name="isRecord" class="form-control" style="width: 228px;" lay-verify="required" lay-ignore>
+					<option value="0" ${('0' ==source.isRecord)?string('selected','')}  >支出</option>
+					<option value="1" ${('1' ==source.isRecord)?string('selected','')}  >收入</option>
+			 </select>
+		</div>
+    </div>
+       <div class="form-group">
+       	 <label   class="col-sm-2 control-label"></label>
+        <div class="col-sm-10">
+      	<button type="submit" class="btn btn-success" lay-submit lay-filter="submit"><i class="fa fa-save"></i> 提交</button>
+      	<a  class="btn btn-default" href="javascript:parent.layer.closeAll('iframe');"><i class="fa fa-close"></i> 取消</a>
+   	  </div>
+ </div>
+  </div>
+</form>
+</@body>
+<@footer>
+</@footer>

@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
-encoding//src/main/resources/sql/AdminLTE-admin.sql=UTF-8
+encoding//src/main/webapp/WEB-INF/views/common/header.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/common/paginateBar.html=UTF-8
 encoding//src/main/webapp/WEB-INF/views/finance/outRecord/add.html=UTF-8
 encoding//src/main/webapp/WEB-INF/views/finance/outRecord/edit.html=UTF-8
 encoding//src/main/webapp/WEB-INF/views/finance/outRecord/list.html=UTF-8
@@ -10,6 +11,7 @@ encoding//src/main/webapp/WEB-INF/views/finance/source/add.html=UTF-8
 encoding//src/main/webapp/WEB-INF/views/finance/source/edit.html=UTF-8
 encoding//src/main/webapp/WEB-INF/views/finance/source/list.html=UTF-8
 encoding//src/main/webapp/WEB-INF/views/index.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/login.html=UTF-8
 encoding//src/main/webapp/WEB-INF/views/statistics/history/indexHis.html=UTF-8
 encoding//src/main/webapp/WEB-INF/views/system/log/list.html=UTF-8
 encoding//src/main/webapp/WEB-INF/views/system/menu/add.html=UTF-8

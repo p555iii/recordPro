@@ -3,83 +3,133 @@
 <mapper namespace="com.vacomall.mapper.OutRecordedMapper">
 
 	<!-- 通用查询映射结果 -->
-	<select id="getThisDayOutRecord" parameterType="int" resultType="java.math.BigDecimal">
-		SELECT IFNULL(sum(money),0)  FROM fin_outrecord WHERE DAY = ${value} and year = ( SELECT DATE_FORMAT( CURRENT_TIMESTAMP(),'%Y' ) )  and month = ( SELECT DATE_FORMAT( CURRENT_TIMESTAMP(),'%m' ) )
+	<select id="getThisDayOutRecord" parameterType="map" resultType="java.math.BigDecimal">
+	SELECT IFNULL(SUM(money),0)  FROM fin_outrecord a,sys_user b,fin_family c
+		WHERE a.`userId` = b.`id` AND b.`family_id` = c.`id` AND b.`family_id` =
+		(SELECT d.id FROM fin_family d,sys_user e WHERE d.`id` = e.`family_id` AND e.`id` = #{userId} )
+		and DAY = #{day} and year = ( SELECT DATE_FORMAT( CURRENT_TIMESTAMP(),'%Y' ) )  and month = ( SELECT DATE_FORMAT( CURRENT_TIMESTAMP(),'%m' ) )
 	</select>
 	
-	<select id="getThisMonthOutRecord" parameterType="int" resultType="java.math.BigDecimal">
-		SELECT IFNULL(sum(money),0) FROM fin_outrecord WHERE MONTH = ${value} and year = ( SELECT DATE_FORMAT( CURRENT_TIMESTAMP(),'%Y' ) )
+	<select id="getThisMonthOutRecord" parameterType="map" resultType="java.math.BigDecimal">
+		SELECT IFNULL(SUM(money),0)  FROM fin_outrecord a,sys_user b,fin_family c
+			WHERE a.`userId` = b.`id` AND b.`family_id` = c.`id` AND b.`family_id` =
+			(SELECT d.id FROM fin_family d,sys_user e WHERE d.`id` = e.`family_id` AND e.`id` = #{userId} )
+			AND a.`month` = #{month} AND a.year = ( SELECT DATE_FORMAT( CURRENT_TIMESTAMP(),'%Y' ) )
 	</select>
-	<select id="getThisMonthBalance" parameterType="int" resultType="java.math.BigDecimal">
+	<select id="getThisMonthBalance" parameterType="map" resultType="java.math.BigDecimal">
 		SELECT (a.s -k.b ) FROM 
- (SELECT IFNULL(sum(money),0) s FROM fin_recorded WHERE MONTH = ${value} and year = ( SELECT DATE_FORMAT( CURRENT_TIMESTAMP(),'%Y' ) )) a, (SELECT IFNULL(sum(money),0) b FROM fin_outrecord WHERE MONTH = ${value} and year = ( SELECT DATE_FORMAT( CURRENT_TIMESTAMP(),'%Y' ) )) k
+			 (SELECT IFNULL(SUM(money),0) s FROM fin_recorded a,sys_user b,fin_family c 
+			WHERE a.`userId` = b.`id` AND b.`family_id` = c.`id` AND b.`family_id` =
+			(SELECT d.id FROM fin_family d,sys_user e WHERE d.`id` = e.`family_id` AND e.`id` = #{userId} )
+			AND a.`month` = #{month} AND a.year = ( SELECT DATE_FORMAT( CURRENT_TIMESTAMP(),'%Y' ) )
+			) a, 
+			(SELECT IFNULL(SUM(money),0) b  FROM fin_outrecord a,sys_user b,fin_family c
+			WHERE a.`userId` = b.`id` AND b.`family_id` = c.`id` AND b.`family_id` =
+			(SELECT d.id FROM fin_family d,sys_user e WHERE d.`id` = e.`family_id` AND e.`id` = #{userId} )
+			AND a.`month` = #{month} AND a.year = ( SELECT DATE_FORMAT( CURRENT_TIMESTAMP(),'%Y' ) )
+			) k
 	</select>
 	<select id="getThisMonthDayOutRecord" parameterType="Map" resultType="java.math.BigDecimal">
-		SELECT IFNULL(sum(money),0) FROM fin_outrecord WHERE DAY = #{day} and  MONTH = #{month} and year = ( SELECT DATE_FORMAT( CURRENT_TIMESTAMP(),'%Y' ) )
+		 SELECT IFNULL(SUM(money),0) FROM fin_outrecord a,sys_user b,fin_family c     
+			 WHERE a.`userId` = b.`id` AND b.`family_id` = c.`id` AND b.`family_id` =
+			  (SELECT d.id FROM fin_family d,sys_user e WHERE d.`id` = e.`family_id` AND e.id = #{userId} ) 
+			 AND DAY = #{day} AND  MONTH = ( SELECT DATE_FORMAT( CURRENT_TIMESTAMP(),'%m' ) ) AND YEAR = ( SELECT DATE_FORMAT( CURRENT_TIMESTAMP(),'%Y' ) )
+					
 	</select>
 	<select id="getThisDayOutRecordList" parameterType="Map" resultType="com.vacomall.entity.FinOutRecorded">
-		select * FROM fin_outrecord WHERE DAY = #{day} and  MONTH = #{month} and year = ( SELECT DATE_FORMAT( CURRENT_TIMESTAMP(),'%Y' ) )
+		SELECT a.* FROM fin_outrecord a,sys_user b,fin_family c     
+			 WHERE a.`userId` = b.`id` AND b.`family_id` = c.`id` AND b.`family_id` =
+			  (SELECT d.id FROM fin_family d,sys_user e WHERE d.`id` = e.`family_id` AND e.id = #{userId} ) 
+			 AND DAY = #{day} AND  MONTH = ( SELECT DATE_FORMAT( CURRENT_TIMESTAMP(),'%m' ) ) AND YEAR = ( SELECT DATE_FORMAT( CURRENT_TIMESTAMP(),'%Y' ) )
 	</select>
 	
-	<select id="getThisMonthOutRecordList" parameterType="int" resultType="com.vacomall.entity.FinOutRecorded">
-		select * FROM fin_outrecord WHERE MONTH = ${value} and year = ( SELECT DATE_FORMAT( CURRENT_TIMESTAMP(),'%Y' ) )
+	<select id="getThisMonthOutRecordList" parameterType="map" resultType="com.vacomall.entity.FinOutRecorded">
+		SELECT a.* FROM fin_outrecord a,sys_user b,fin_family c     
+			 WHERE a.`userId` = b.`id` AND b.`family_id` = c.`id` AND b.`family_id` =
+			  (SELECT d.id FROM fin_family d,sys_user e WHERE d.`id` = e.`family_id` AND e.id = #{userId} ) 
+			  AND  MONTH = #{month} AND YEAR = ( SELECT DATE_FORMAT( CURRENT_TIMESTAMP(),'%Y' ) )
 	</select>
 	
 	<select id="selectHistroyOutRecord" parameterType="Map" resultType="java.lang.Double">
-		SELECT IFNULL(sum(money),0) FROM fin_outrecord
-		 <where>
+		SELECT IFNULL(SUM(money),0)  FROM fin_outrecord a,sys_user b,fin_family c
+		WHERE a.`userId` = b.`id` AND b.`family_id` = c.`id` AND b.`family_id` =
+		(SELECT d.id FROM fin_family d,sys_user e WHERE d.`id` = e.`family_id` AND e.`id` = #{userId} )
              <if test="year !=null">
                  and year = #{year}
              </if>
              <if test="month != null">
                   and month = #{month}
              </if>
-         </where>
 	</select>
 	
 	<select id="getMonthOutRecord" parameterType="Map" resultType="java.math.BigDecimal">
-		SELECT IFNULL(sum(money),0) FROM fin_outrecord
-		 <where>
+			SELECT IFNULL(SUM(money),0)  FROM fin_outrecord a,sys_user b,fin_family c
+		WHERE a.`userId` = b.`id` AND b.`family_id` = c.`id` AND b.`family_id` =
+		(SELECT d.id FROM fin_family d,sys_user e WHERE d.`id` = e.`family_id` AND e.`id` = #{userId} )
              <if test="year !=null">
                  and year = #{year}
              </if>
              <if test="month != null">
                   and month = #{month}
              </if>
-         </where>
 	</select>
 	
 	<select id="getBalance" parameterType="Map" resultType="java.lang.Double">
-		SELECT (a.s -k.b )
-		 FROM (SELECT IFNULL(sum(money),0) s FROM fin_recorded 
-		 	<where>
-             <if test="year !=null">
+		SELECT (a.s -k.b ) FROM 
+		  (SELECT IFNULL(SUM(money),0) s FROM fin_recorded a,sys_user b,fin_family c 
+			WHERE a.`userId` = b.`id` AND b.`family_id` = c.`id` AND b.`family_id` =
+			(SELECT d.id FROM fin_family d,sys_user e WHERE d.`id` = e.`family_id` AND e.`id` = #{userId} )
+			  <if test="year !=null">
+                 and year = #{year}
+             </if>
+             <if test="month != null">
+                  and month = #{month}
+             </if> 
+			) a,
+            (SELECT IFNULL(SUM(money),0) b  FROM fin_outrecord a,sys_user b,fin_family c
+			WHERE a.`userId` = b.`id` AND b.`family_id` = c.`id` AND b.`family_id` =
+			(SELECT d.id FROM fin_family d,sys_user e WHERE d.`id` = e.`family_id` AND e.`id` = #{userId} )
+			 <if test="year !=null">
                  and year = #{year}
              </if>
              <if test="month != null">
                   and month = #{month}
              </if>
-         </where>
-		 ) a, (SELECT IFNULL(sum(money),0) b FROM fin_outrecord 
-		 <where>
-             <if test="year !=null">
-                 and year = #{year}
-             </if>
-             <if test="month != null">
-                  and month = #{month}
-             </if>
-         </where>) k
+             
+			) k
+            
 	</select>
 	
 	<select id="selectHistroyOutRecordList" parameterType="map" resultType="com.vacomall.entity.FinOutRecorded">
-		SELECT * FROM fin_outrecord
-		 <where>
+		SELECT a.*  FROM fin_outrecord a,sys_user b,fin_family c
+		WHERE a.`userId` = b.`id` AND b.`family_id` = c.`id` AND b.`family_id` =
+		(SELECT d.id FROM fin_family d,sys_user e WHERE d.`id` = e.`family_id` AND e.`id` = #{userId} )
              <if test="year !=null">
                  and year = #{year}
              </if>
              <if test="month != null">
                   and month = #{month}
              </if>
-         </where>
+	</select>
+	
+	<select id="getCount" parameterType="map" resultType="int">
+		SELECT count(*) FROM fin_outrecord a,sys_user b,fin_family c 
+			WHERE a.`userId` = b.`id` AND b.`family_id` = c.`id` AND b.`family_id` = 
+			(SELECT d.id FROM fin_family d,sys_user e WHERE d.`id` = e.`family_id` AND e.id = #{userId} )
+			 <if test="search !=null">
+                 and a.money &lt; #{search}
+             </if>
+	</select>
+	
+	<select id="getPages" parameterType="map" resultType="com.vacomall.entity.FinRecorded">
+		<bind name="start" value="(page.pageNow-1)*page.pageSize"/>
+		SELECT a.* FROM fin_outrecord a,sys_user b,fin_family c 
+			WHERE a.`userId` = b.`id` AND b.`family_id` = c.`id` AND b.`family_id` = 
+			(SELECT d.id FROM fin_family d,sys_user e WHERE d.`id` = e.`family_id` AND e.id = #{userId} )
+			 <if test="search !=null">
+                 and a.money &lt; #{search}
+             </if>
+              ORDER BY a.createTime DESC
+            limit ${start},${page.pageSize}
 	</select>
 </mapper>

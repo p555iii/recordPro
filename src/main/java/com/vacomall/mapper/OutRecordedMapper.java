@@ -9,24 +9,29 @@ import com.vacomall.entity.FinOutRecorded;
 
 public interface OutRecordedMapper extends BaseMapper<FinOutRecorded>{
 
-	BigDecimal getThisDayOutRecord(int date);
+	BigDecimal getThisDayOutRecord(Map map);
 
-	BigDecimal getThisMonthOutRecord(int i);
+	BigDecimal getThisMonthOutRecord(Map map);
 
-	BigDecimal getThisMonthBalance(int i);
+	BigDecimal getThisMonthBalance(Map map);
 
-	BigDecimal getThisMonthDayOutRecord(Map<String, Integer> map);
+	BigDecimal getThisMonthDayOutRecord(Map<String, Object> map);
 
-	List<FinOutRecorded> getThisDayOutRecordList(Map<String, Integer> map);
+	List<FinOutRecorded> getThisDayOutRecordList(Map<String, Object> map);
 
-	List<FinOutRecorded> getThisMonthOutRecordList(int month);
+	
+	double selectHistroyOutRecord(Map<String, Object> map);
 
-	double selectHistroyOutRecord(Map<String, String> map);
+	BigDecimal getMonthOutRecord(Map<String, Object> map);
 
-	BigDecimal getMonthOutRecord(Map<String, String> map);
+	double getBalance(Map<String, Object> map);
 
-	double getBalance(Map<String, String> map);
+	List<FinOutRecorded> selectHistroyOutRecordList(Map<String, Object> map);
 
-	List<FinOutRecorded> selectHistroyOutRecordList(Map<String, String> map);
+	List<FinOutRecorded> getThisMonthOutRecordList(Map<String, Object> map);
+
+	int getCount(Map<String, Object> map);
+
+	List<FinOutRecorded> getPages(Map<String, Object> map);
 
 }

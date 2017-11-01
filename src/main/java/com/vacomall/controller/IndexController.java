@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.vacomall.common.util.ShiroUtil;
+import com.vacomall.entity.SysUser;
+import com.vacomall.service.ISysUserService;
 import com.vacomall.service.OutRecordedService;
 import com.vacomall.service.RecordedService;
 /**
@@ -24,20 +27,26 @@ public class IndexController {
 	private OutRecordedService outRecordedService;
 	@Autowired
 	private RecordedService recordedService;
+	@Autowired 
+	private ISysUserService sysUserService;
 	
     @RequestMapping({"","/","index"})  
     public  String index(Model model){
+    	//得到当前登录用户  然后通过用户信息得到所属famliy
+    	SysUser sysUser = sysUserService.selectById(ShiroUtil.getSessionUid());
     	//本月入账
-    	BigDecimal b =  recordedService.getThisMonthRecord();
+    	BigDecimal b =  recordedService.getThisMonthRecord(sysUser);
     	model.addAttribute("sm", b);
     	//今日出账
-    	BigDecimal d =  outRecordedService.getThisDayOutRecord();
+    	BigDecimal d =  outRecordedService.getThisDayOutRecord(sysUser);
     	model.addAttribute("ct", d);
     	//本月累计出账
-    	BigDecimal t =  outRecordedService.getThisMonthOutRecord();
+    	BigDecimal t =  outRecordedService.getThisMonthOutRecord(sysUser);
     	model.addAttribute("t", t);
     	//本月结余
-    	BigDecimal s =  outRecordedService.getThisMonthBalance();
+//    	BigDecimal s =  outRecordedService.getThisMonthBalance(sysUser);
+     	//总结余
+    	double s = outRecordedService.getBalance(null, null,sysUser);
     	model.addAttribute("s", s);
     	
     	//得到本月天数
@@ -46,7 +55,7 @@ public class IndexController {
     	StringBuilder sb2 = new StringBuilder();
     	for(int i = 1;i <= day; i++){
     		sb.append("\""+i+"\",");
-    		BigDecimal money =outRecordedService.getThisMonthDayOutRecord(i);
+    		BigDecimal money =outRecordedService.getThisMonthDayOutRecord(i,sysUser);
     		if(money.doubleValue() > 0){
     			sb2.append(""+money+",");
     		}else{

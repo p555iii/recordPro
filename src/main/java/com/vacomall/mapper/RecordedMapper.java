@@ -6,13 +6,19 @@ import java.util.Map;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.vacomall.entity.FinRecorded;
+import com.vacomall.entity.Page;
+import com.vacomall.entity.SysUser;
 
 public interface RecordedMapper extends BaseMapper<FinRecorded> {
 
-	BigDecimal getThisMonthRecord(int i);
+	BigDecimal getThisMonthRecord(Map map);
 
-	List<FinRecorded> getThisMonthRecordList(int i);
+	List<FinRecorded> getThisMonthRecordList(Map map);
 
-	double selectHistroyRecord(Map<String, String> map);
+	double selectHistroyRecord(Map<String, Object> map);
+
+	int getCount(Map<String, Object> map);
+
+	List<FinRecorded> getPages(Map<String, Object> map);
 
 }

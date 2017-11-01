@@ -17,6 +17,7 @@ com\vacomall\entity\vo\TreeMenu.class
 com\vacomall\mapper\SysRoleMenuMapper.class
 com\vacomall\common\JsonpSupportAdvice.class
 com\vacomall\common\controller\SuperController.class
+com\vacomall\mapper\OutRecordedMapper.class
 com\vacomall\service\ISysMenuService.class
 com\vacomall\service\impl\SysUserServiceImpl.class
 com\vacomall\common\enums\Action.class
@@ -42,8 +43,10 @@ com\vacomall\entity\SysUserRole.class
 com\vacomall\service\ISysUserRoleService.class
 com\vacomall\common\util\EhcacheHelper.class
 com\vacomall\common\anno\Log.class
+com\vacomall\service\OutRecordedService.class
 com\vacomall\mapper\SysSettingMapper.class
 com\vacomall\service\ISysRoleMenuService.class
+com\vacomall\controller\statistics\HistoryStatisticsController.class
 com\vacomall\controller\system\RoleController.class
 com\vacomall\common\config\Config.class
 com\vacomall\entity\SysDept.class
@@ -52,13 +55,18 @@ com\vacomall\controller\finance\RecordedController.class
 com\vacomall\common\util\HttpUtil.class
 com\vacomall\controller\system\MeController.class
 com\vacomall\common\shiro\tag\PrincipalTag.class
+com\vacomall\service\impl\OutRecordedServiceImpl.class
 com\vacomall\common\shiro\tag\UserTag.class
 com\vacomall\controller\system\MenuController.class
 com\vacomall\service\ISysSettingService.class
+com\vacomall\controller\finance\SourceController.class
 com\vacomall\common\util\ShiroUtil.class
 com\vacomall\controller\system\UserController.class
 com\vacomall\mapper\RecordedMapper.class
+com\vacomall\controller\finance\OutRecordedController.class
 com\vacomall\controller\LoginController.class
+com\vacomall\controller\statistics\IndexStatisticsController.class
+com\vacomall\entity\FinOutRecorded.class
 com\vacomall\common\shiro\tag\HasRoleTag.class
 com\vacomall\mapper\SysMenuMapper.class
 com\vacomall\service\impl\SysRoleMenuServiceImpl.class
