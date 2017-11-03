@@ -11,6 +11,7 @@ D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\service\RecordedService.
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\mapper\RecordedMapper.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\entity\SysDept.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\common\shiro\ShiroTagFreeMarkerConfigurer.java
+D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\entity\FinFamily.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\controller\statistics\HistoryStatisticsController.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\controller\LoginController.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\common\shiro\tag\PermissionTag.java
@@ -21,6 +22,7 @@ D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\entity\FinSource.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\service\impl\SysLogServiceImpl.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\common\controller\SuperController.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\common\shiro\tag\RoleTag.java
+D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\mapper\FamilyMapper.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\service\impl\OutRecordedServiceImpl.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\service\ISysUserService.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\service\ISysLogService.java
@@ -71,6 +73,7 @@ D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\common\config\Config.jav
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\controller\system\MonitorController.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\controller\system\DeptController.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\controller\finance\SourceController.java
+D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\service\FamilyService.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\common\util\HttpUtil.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\controller\system\MeController.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\entity\vo\TreeMenuAllowAccess.java
@@ -88,6 +91,8 @@ D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\entity\SysMenu.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\mapper\OutRecordedMapper.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\interceptor\GlobalInterceptor.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\service\impl\SysDeptServiceImpl.java
+D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\service\impl\FamilyServiceImpl.java
+D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\controller\family\FamilyController.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\common\shiro\tag\PrincipalTag.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\mapper\SysMenuMapper.java
 D:\meWorkSpace\KangarooAdmin\src\main\java\com\vacomall\common\shiro\tag\AuthenticatedTag.java

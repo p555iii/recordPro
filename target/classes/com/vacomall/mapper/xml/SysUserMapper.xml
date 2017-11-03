@@ -12,6 +12,7 @@
 		<result column="userDesc" property="userDesc" />
 		<result column="userImg" property="userImg" />
 		<result column="deptId" property="deptId" />
+		<result column="family_id" property="family_id" />
 	</resultMap>
 	
 	<select id="selectUserList" resultType="java.util.HashMap">

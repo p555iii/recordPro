@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vacomall.mapper.FamilyMapper">
+
+
+	
+	<select id="getCount" parameterType="map" resultType="int">
+		SELECT COUNT(*) FROM sys_user WHERE family_id = 
+		(SELECT id FROM fin_family WHERE id = (SELECT family_id FROM sys_user WHERE id = #{userId}))
+			<!--  <if test="search !=null">
+                 and a.money &lt; #{search}
+             </if> -->
+	</select>
+	<select id="getPages" parameterType="map" resultType="com.vacomall.entity.SysUser">
+		<bind name="start" value="(page.pageNow-1)*page.pageSize"/>
+	SELECT * FROM sys_user WHERE family_id = 
+		(SELECT id FROM fin_family WHERE id = (SELECT family_id FROM sys_user WHERE id = #{userId}))
+			<!--  <if test="search !=null">
+                 and a.money &lt; #{search}
+             </if> -->
+              ORDER BY createTime DESC
+            limit ${start},${page.pageSize}
+	</select>
+</mapper>

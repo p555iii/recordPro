@@ -78,6 +78,9 @@ public class OutRecordedController extends SuperController{
     public Rest doAdd(FinOutRecorded finRecorded){
     	Date createTime = finRecorded.getCreateTime();
     	Calendar c = Calendar.getInstance();
+    	if(createTime==null){
+    		createTime = new Date();
+    	}
     	c.setTime(createTime);
     	finRecorded.setYear(createTime.getYear()+1900);
     	finRecorded.setMonth(createTime.getMonth()+1);

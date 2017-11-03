@@ -1,7 +1,8 @@
 eclipse.preferences.version=1
 encoding//src/main/webapp/WEB-INF/views/common/header.html=UTF-8
 encoding//src/main/webapp/WEB-INF/views/common/paginateBar.html=UTF-8
-encoding//src/main/webapp/WEB-INF/views/finance/outRecord/add.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/family/add.html=UTF-8
+encoding//src/main/webapp/WEB-INF/views/family/list.html=UTF-8
 encoding//src/main/webapp/WEB-INF/views/finance/outRecord/edit.html=UTF-8
 encoding//src/main/webapp/WEB-INF/views/finance/outRecord/list.html=UTF-8
 encoding//src/main/webapp/WEB-INF/views/finance/recorded/add.html=UTF-8

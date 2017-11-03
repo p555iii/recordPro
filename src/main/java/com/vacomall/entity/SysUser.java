@@ -59,6 +59,16 @@ public class SysUser extends Model<SysUser> {
      */
 	private String deptId;
 
+	private String family_id;
+	
+	
+	public String getFamily_id() {
+		return family_id;
+	}
+
+	public void setFamily_id(String family_id) {
+		this.family_id = family_id;
+	}
 
 	public String getId() {
 		return id;
