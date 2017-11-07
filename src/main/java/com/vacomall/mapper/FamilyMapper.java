@@ -13,4 +13,6 @@ public interface FamilyMapper extends BaseMapper<FinFamily>{
 
 	List<SysUser> getPages(Map<String, Object> map);
 
+	int isHomeMan(SysUser sysUser);
+
 }

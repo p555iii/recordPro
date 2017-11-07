@@ -41,5 +41,10 @@ public class FamilyServiceImpl extends ServiceImpl<FamilyMapper,FinFamily> imple
 		page.setList(pages);
 		return page;
 	}
+	@Override
+	public int isHomeMan(SysUser sysUser) {
+		// TODO Auto-generated method stub
+		return familyMapper.isHomeMan(sysUser);
+	}
 
 }

@@ -21,4 +21,8 @@
               ORDER BY createTime DESC
             limit ${start},${page.pageSize}
 	</select>
+	
+	<select id="isHomeMan" parameterType="com.vacomall.entity.SysUser" resultType="int">
+		select count(*) from fin_family where family_host = #{id}
+	</select>
 </mapper>

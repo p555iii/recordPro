@@ -1,10 +1,8 @@
 package com.vacomall.controller.family;
 
 import java.util.Date;
-import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +15,6 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.vacomall.common.bean.Rest;
 import com.vacomall.common.controller.SuperController;
 import com.vacomall.common.util.ShiroUtil;
-import com.vacomall.entity.FinFamily;
-import com.vacomall.entity.FinRecorded;
-import com.vacomall.entity.FinSource;
 import com.vacomall.entity.Page;
 import com.vacomall.entity.SysUser;
 import com.vacomall.service.FamilyService;
@@ -44,6 +39,10 @@ public class FamilyController extends SuperController{
 			model.addAttribute("search",search);
 		}
 		Page<SysUser> page = familyService.selectPage(pageNumber, pageSize, sysUser,search);
+		int count = familyService.isHomeMan(sysUser);
+		if(count == 1){
+			model.addAttribute("isHome",1);
+		}
 		com.baomidou.mybatisplus.plugins.Page<SysUser> pageData = new com.baomidou.mybatisplus.plugins.Page<SysUser>(page.getPageNow(),page.getPageSize());
 		pageData.setRecords(page.getList());
 		pageData.setTotal(page.getCount());
@@ -74,6 +73,28 @@ public class FamilyController extends SuperController{
     	sysUser.setFamily_id(loginUser.getFamily_id());
     	String[] arr = {"2"};
     	sysUserService.insertUser(sysUser,arr);
+    	return Rest.ok();
+    }
+    @RequestMapping("/delete")
+    public Rest delete(String id){
+    	sysUserService.delete(id);
+    	return Rest.ok();
+    }
+    @RequestMapping("/edit")
+    public String edit(String id,Model model){
+    	SysUser selectById = sysUserService.selectById(id);
+    	model.addAttribute("user", selectById);
+    	return "family/edit";
+    }
+    @RequestMapping("/doEdit")
+    public Rest doEdit(SysUser sysUser){
+    	if(sysUser.getId() == null || sysUser.getId().equals("")){
+    		return Rest.failure("id为空");
+    	}
+    	SysUser selectById = sysUserService.selectById(sysUser.getId());
+    	selectById.setUserName(sysUser.getUserName());
+    	selectById.setPassword(sysUser.getPassword());
+    	sysUserService.updateById(selectById);
     	return Rest.ok();
     }
 }
