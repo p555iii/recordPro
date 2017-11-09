@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.vacomall.entity.FinOutRecorded;
+import com.vacomall.entity.FinRecorded;
 
 public interface OutRecordedMapper extends BaseMapper<FinOutRecorded>{
 
@@ -33,5 +34,7 @@ public interface OutRecordedMapper extends BaseMapper<FinOutRecorded>{
 	int getCount(Map<String, Object> map);
 
 	List<FinOutRecorded> getPages(Map<String, Object> map);
+
+	List<FinRecorded> getOutRecordList(Map<String, Object> map);
 
 }

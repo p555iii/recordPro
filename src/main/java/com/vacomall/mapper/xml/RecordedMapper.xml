@@ -48,4 +48,16 @@
               ORDER BY a.createTime DESC
             limit ${start},${page.pageSize}
 	</select>
+	
+	<select id="getRecordList" parameterType="map" resultType="com.vacomall.entity.FinRecorded">
+		SELECT a.* FROM fin_recorded a,sys_user b,fin_family c 
+			WHERE a.`userId` = b.`id` AND b.`family_id` = c.`id` AND b.`family_id` = 
+			(SELECT d.id FROM fin_family d,sys_user e WHERE d.`id` = e.`family_id` AND e.id = #{userId} )
+             <if test="year !=null">
+                 and a.year = #{year}
+             </if>
+             <if test="month != null">
+                  and a.month = #{month}
+             </if>
+	</select>
 </mapper>

@@ -116,7 +116,7 @@ public class OutRecordedServiceImpl extends ServiceImpl<OutRecordedMapper, FinOu
 	}
 	@Override
 	public Page<FinOutRecorded> selectPage(Integer pageNumber,
-			Integer pageSize, SysUser sysUser, String search) {
+			Integer pageSize, SysUser sysUser, String search,String source) {
 		if(pageNumber==null){
 			pageNumber=1;
 		}
@@ -129,6 +129,7 @@ public class OutRecordedServiceImpl extends ServiceImpl<OutRecordedMapper, FinOu
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("userId", sysUser.getId());
 		map.put("search", search);
+		map.put("source", source);
 		int count = OutRecordedMapper.getCount(map);
 		Page<FinOutRecorded> page = new Page<FinOutRecorded>(pageNumber, pageSize, count);
 		map.put("page", page);
@@ -136,6 +137,15 @@ public class OutRecordedServiceImpl extends ServiceImpl<OutRecordedMapper, FinOu
 		List<FinOutRecorded> pages = OutRecordedMapper.getPages(map);
 		page.setList(pages);
 		return page;
+	}
+	@Override
+	public List<FinOutRecorded> getOutRecordList(String year, String month,
+			SysUser sysUser) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("year", year);
+		map.put("month", month);
+		map.put("userId", sysUser.getId());
+		return OutRecordedMapper.selectHistroyOutRecordList(map);
 	}
 
 }

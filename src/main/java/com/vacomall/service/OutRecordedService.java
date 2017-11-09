@@ -32,6 +32,9 @@ public interface OutRecordedService extends IService<FinOutRecorded> {
 	List<FinOutRecorded> selectHistroyOutRecordList(String year, String month, SysUser sysUser);
 
 	Page<FinOutRecorded> selectPage(Integer pageNumber, Integer pageSize,
-			SysUser sysUser, String search);
+			SysUser sysUser, String search, String source);
+
+	List<FinOutRecorded> getOutRecordList(String year, String month,
+			SysUser sysUser);
 	
 }

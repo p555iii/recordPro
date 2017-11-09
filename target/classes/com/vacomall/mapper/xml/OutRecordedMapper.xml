@@ -119,6 +119,9 @@
 			 <if test="search !=null">
                  and a.money &lt; #{search}
              </if>
+              <if test="source !=null">
+                 and a.sourceId = #{source}
+             </if>
 	</select>
 	
 	<select id="getPages" parameterType="map" resultType="com.vacomall.entity.FinRecorded">
@@ -129,7 +132,11 @@
 			 <if test="search !=null">
                  and a.money &lt; #{search}
              </if>
+             <if test="source !=null">
+                 and a.sourceId = #{source}
+             </if>
               ORDER BY a.createTime DESC
             limit ${start},${page.pageSize}
 	</select>
+	
 </mapper>

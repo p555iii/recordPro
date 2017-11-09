@@ -43,17 +43,22 @@ public class OutRecordedController extends SuperController{
 	private ISysUserService sysUserService;
 	
 	@RequestMapping("/list/{pageNumber}")  
-	public  String list(@PathVariable Integer pageNumber,@RequestParam(defaultValue="15") Integer pageSize, String search,Model model){
+	public  String list(@PathVariable Integer pageNumber,@RequestParam(defaultValue="15") Integer pageSize, String search,Model model,String source){
 		//得到当前登录用户  然后通过用户信息得到所属famliy
     	SysUser sysUser = sysUserService.selectById(ShiroUtil.getSessionUid());
 		model.addAttribute("pageSize",pageSize);
 		// 查询分页
 		EntityWrapper<FinOutRecorded> ew = new EntityWrapper<FinOutRecorded>();
+		if(StringUtils.isEmpty(source)){
+			source = null;
+		}else{
+			model.addAttribute("source", source);
+		}
 		if(StringUtils.isNotBlank(search)){
 			ew.lt("money", search);
 			model.addAttribute("search",search);
 		}
-		Page<FinOutRecorded> page = outRecordedService.selectPage(pageNumber, pageSize, sysUser,search);
+		Page<FinOutRecorded> page = outRecordedService.selectPage(pageNumber, pageSize, sysUser,search,source);
 		com.baomidou.mybatisplus.plugins.Page<FinOutRecorded> pageData = new com.baomidou.mybatisplus.plugins.Page<FinOutRecorded>(page.getPageNow(),page.getPageSize());
 		pageData.setRecords(page.getList());
 		pageData.setTotal(page.getCount());

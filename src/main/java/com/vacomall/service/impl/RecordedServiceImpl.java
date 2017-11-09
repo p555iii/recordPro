@@ -75,4 +75,14 @@ public class RecordedServiceImpl extends ServiceImpl<RecordedMapper, FinRecorded
 		return page;
 	}
 
+	@Override
+	public List<FinRecorded> getRecordList(String year, String month,
+			SysUser sysUser) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("year", year);
+		map.put("month", month);
+		map.put("userId", sysUser.getId());
+		return recordedMapper.getRecordList(map);
+	}
+
 }

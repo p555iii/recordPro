@@ -21,4 +21,6 @@ public interface RecordedMapper extends BaseMapper<FinRecorded> {
 
 	List<FinRecorded> getPages(Map<String, Object> map);
 
+	List<FinRecorded> getRecordList(Map<String, Object> map);
+
 }

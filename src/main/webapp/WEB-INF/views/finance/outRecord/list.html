@@ -22,10 +22,16 @@
 	            </div>
              <div class="input-group">
 	               <input type="text" name="search" value="${search!}" class="form-control" placeholder="出账小于">
-	               <div class="input-group-btn">
-	                 <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-	               </div>
+	            
+	               
 	          </div>
+	            <select name="source" class="form-control" lay-verify="required" lay-ignore>
+						<option value="">---选择支出方式---</option>
+						<#list sourceList as m>
+						      <option value="${(m.id)!'--'}" ${(m.id == source)?string('selected','')}  > ${(m.name)!}</option>
+						  </#list>
+				    </select>
+	                 <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
 	         <div class="input-group pull-right">
                  <button type="button" class="btn btn-primary btn-flat" onclick="exportTo('角色数据');"><i class="fa fa-file-excel-o"></i> 导出</button>
              </div>
@@ -58,7 +64,6 @@
 					     	 <td>
 							    ${(m.name)!}
 							  </td>
-							 
 							</#if>
 					     </#list>
 	        		   <td>

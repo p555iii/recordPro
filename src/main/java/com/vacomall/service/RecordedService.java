@@ -18,5 +18,7 @@ public interface RecordedService extends IService<FinRecorded> {
 
 	Page<FinRecorded> selectPage(Integer pageNumber, Integer pageSize,
 			SysUser sysUser, String search);
+
+	List<FinRecorded> getRecordList(String year, String month, SysUser sysUser);
 	
 }

@@ -11,13 +11,13 @@
       
     </h1>
     <form action="" class="form-inline">
-	    <select name="year" class="form-control" style="width: 228px;float: left;margin-top:-35px;margin-left: 500px;" lay-verify="required" lay-ignore>
+	    <select name="year" id="year"class="form-control" style="width: 228px;float: left;margin-top:-35px;margin-left: 500px;" lay-verify="required" lay-ignore>
 			<option value="">---选择要统计的年份---</option>
 			 <#list years as y>
 			      <option value="${(y)!'--'}" ${(y == year)?string('selected','')}  >${(y)!}年</option>
 			  </#list>
 	    </select>
-	      <select name="month" class="form-control" style="width: 228px;margin-top: -58px;margin-left:735px;" lay-verify="required" lay-ignore>
+	      <select name="month" id="month" class="form-control" style="width: 228px;margin-top: -58px;margin-left:735px;" lay-verify="required" lay-ignore>
 			<option value="">---选择要统计的月份---</option>
 			<#list months as m>
 			      <option value="${(m)!'--'}" ${(m == month)?string('selected','')}  >${(m)!}月</option>
@@ -41,7 +41,7 @@
            <div class="icon">
              <i class="fa fa-jpy"></i>
            </div>
-           <a href="javascript:;" data-url="/statistics/index/monthRecord" class="small-box-footer btn btn-primary dialog" data-title="详细信息" data-width="600" data-height="500">详细信息 <i class="fa fa-arrow-circle-right"></i></a>
+           <a href="javascript:;" id="sumR" onclick="toSumRecord(this)" class="small-box-footer btn btn-primary dialog" data-title="详细信息" data-width="600" data-height="500">详细信息 <i class="fa fa-arrow-circle-right"></i></a>
          </div>
        </div><!-- ./col -->
        
@@ -55,7 +55,7 @@
            <div class="icon">
              <i class="fa fa-cart-plus"></i>
            </div>
-          <a href="javascript:;" data-url="/statistics/index/toDayOutrecord" class="small-box-footer btn btn-primary dialog" data-title="详细信息" data-width="600" data-height="500">详细信息 <i class="fa fa-arrow-circle-right"></i></a>
+          <a href="javascript:;" id="ct" onclick="sumOutRecord()" class="small-box-footer btn btn-primary dialog" data-title="详细信息" data-width="600" data-height="500">详细信息 <i class="fa fa-arrow-circle-right"></i></a>
          </div>
        </div><!-- ./col -->
        
@@ -69,7 +69,7 @@
            <div class="icon">
              <i class="fa  fa-btc"></i>
            </div>
-          <a href="javascript:;" data-url="/statistics/index/toMothOutrecord" class="small-box-footer btn btn-primary dialog" data-title="详细信息" data-width="600" data-height="500">详细信息 <i class="fa fa-arrow-circle-right"></i></a>
+          <a href="javascript:;" id="t" onclick="sumOutRecordMonth()" class="small-box-footer btn btn-primary dialog" data-title="详细信息" data-width="600" data-height="500">详细信息 <i class="fa fa-arrow-circle-right"></i></a>
          </div>
        </div><!-- ./col -->
        
@@ -115,6 +115,7 @@
 </@body>
 <@footer>
 <script src="/plugins/chartjs/echarts.min.js"></script>
+<script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
  <script>
  $(function(){
 	  // 基于准备好的dom，初始化echarts实例
@@ -193,6 +194,20 @@
 	    // 使用刚指定的配置项和数据显示图表。
 	    myChart2.setOption(option2);
  });
- 
+ function toSumRecord(){
+	var year = $("#year option:selected").val();
+	var month = $("#month option:selected").val();
+	$("#sumR").attr('data-url',"/statistics/history/SumRecord?year="+year+"&month="+month);
+ }
+ function sumOutRecord(){
+	 var year = $("#year option:selected").val();
+	 var month = $("#month option:selected").val();
+	 $("#ct").attr('data-url',"/statistics/history/SumOutRecord?year="+year+"&month="+month);
+ }
+ function sumOutRecordMonth(){
+	 var year = $("#year option:selected").val();
+	 var month = $("#month option:selected").val();
+	 $("#t").attr('data-url',"/statistics/history/sumOutRecordMonth?year="+year+"&month="+month);
+ }
  </script>
 </@footer>
